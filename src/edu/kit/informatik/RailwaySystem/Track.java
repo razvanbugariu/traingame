@@ -1,13 +1,17 @@
-package edu.kit.informatik.Track;
+package edu.kit.informatik.RailwaySystem;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 abstract class Track implements Comparable<Track> {
-    private int id;
+
+    protected int id;
     abstract void setId(int id);
     abstract int getId();
     abstract List<Point> getPoints();
     abstract int length();
+    abstract HashMap<Point, Set<Point>> getAdjacent();
 
     @Override
     public int compareTo(Track track) {
@@ -18,5 +22,4 @@ abstract class Track implements Comparable<Track> {
         else
             return -1;
     }
-
 }

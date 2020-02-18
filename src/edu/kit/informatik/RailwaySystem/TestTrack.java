@@ -1,10 +1,10 @@
-package edu.kit.informatik.Track;
+package edu.kit.informatik.RailwaySystem;
 
 import java.io.IOException;
 
 public class TestTrack {
     public static void main(String[] args) {
-        Route r = new Route();
+        RailwaySystem r = new RailwaySystem();
         try {
 
             r.addTrack(new NormalTrack(new Point(1 , 1) , new Point(5, 1)));

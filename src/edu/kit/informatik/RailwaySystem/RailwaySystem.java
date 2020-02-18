@@ -1,19 +1,16 @@
-package edu.kit.informatik.Track;
-import edu.kit.informatik.RollingStock.Train;
+package edu.kit.informatik.RailwaySystem;
+import edu.kit.informatik.RollingStock.TrainList;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class Route {
+public class RailwaySystem {
 
-    private NormalTrack track;
-    private Switch aSwitch;
     private List<Track> route;
-    private Train train;
+    private Map<Point, Set<Point>> adjacent;
+    private TrainList train;
 
-    public Route() {
+    public RailwaySystem() {
         route = new ArrayList<>();
     }
 
@@ -33,6 +30,7 @@ public class Route {
         if (route.isEmpty()) {
             track.setId(getId());
             route.add(track);
+            adjacent = track.getAdjacent();
         } else {
             int count = 0;
             boolean connection = false;
@@ -53,15 +51,22 @@ public class Route {
             if (connection) {
                 track.setId(getId());
                 route.add(track);
+                //adauga la lista de adiacenta punctele adiacente punctului adaugat
+                for (Point point : track.getPoints()) {
+                    if (adjacent.containsKey(point)) {
+                        for (Point adjPoint : track.getAdjacent().get(point)) {
+                            adjacent.get(point).add(adjPoint);
+                        }
+                    }
+                }
+
             } else {
                 throw new IOException();
             }
         }
     }
 
-    public void removeTrack(int id) {
-        route.removeIf(track -> track.getId() == id);
-    }
+    public void removeTrack(int id) {}
 
     @Override
     public String toString() {
@@ -72,5 +77,7 @@ public class Route {
         }
         return str;
     }
+
+
 
 }

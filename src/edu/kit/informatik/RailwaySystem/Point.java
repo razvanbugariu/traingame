@@ -1,4 +1,4 @@
-package edu.kit.informatik.Track;
+package edu.kit.informatik.RailwaySystem;
 
 public class Point {
 

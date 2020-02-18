@@ -1,12 +1,10 @@
-package edu.kit.informatik.Track;
+package edu.kit.informatik.RailwaySystem;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Switch extends Track {
-    private int id;
+
     private List<Point> points;
     private boolean endPoint1;
     private boolean endPoint2;
@@ -54,6 +52,14 @@ public class Switch extends Track {
         } else {
             return -1;
         }
+    }
+
+    public HashMap<Point, Set<Point>> getAdjacent() {
+        HashMap<Point, Set<Point>> adjacent = new HashMap<>();
+        adjacent.put(points.get(0), new HashSet<>(Arrays.asList(points.get(1), points.get(2))));
+        adjacent.put(points.get(1), new HashSet<>(Arrays.asList(points.get(0))));
+        adjacent.put(points.get(2), new HashSet<>(Arrays.asList(points.get(0))));
+        return adjacent;
     }
 
     @Override

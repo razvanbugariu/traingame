@@ -1,9 +1,27 @@
 package edu.kit.informatik.RollingStock;
 
-public class TrainSet extends RollingStock {
+import java.io.IOException;
 
-    private String name;
-    private int length;
+public class TrainSet extends Locomotive {
 
+    public TrainSet(String classId, String name, int length, boolean couplingFront, boolean couplingBack) throws IOException {
+        this.classId = classId;
+        this.name = name;
+        setId(name, classId);
+        setLength(length);
+        setCoupling(couplingFront, couplingBack);
+        this.trainId = -1;
+    }
 
+    @Override
+    public String toString() {
+        String str = "";
+        if (trainId == -1) {
+            str += "none ";
+        } else {
+            str += trainId + " ";
+        }
+        str += classId + " " + name + " " + length + " " + couplingFront + " " + couplingBack;
+        return str;
+    }
 }

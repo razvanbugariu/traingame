@@ -1,13 +1,10 @@
-package edu.kit.informatik.Track;
+package edu.kit.informatik.RailwaySystem;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class NormalTrack extends Track {
 
-    private int id;
     private List<Point> points;
     private int length;
 
@@ -36,6 +33,14 @@ public class NormalTrack extends Track {
     public int length() {
         return (int) points.get(0).distanceTo(points.get(1));
     }
+
+    public HashMap<Point, Set<Point>> getAdjacent() {
+        HashMap<Point, Set<Point>> adjacent = new HashMap<>();
+        adjacent.put(points.get(0), new HashSet<>(Arrays.asList(points.get(1))));
+        adjacent.put(points.get(1), new HashSet<>(Arrays.asList(points.get(0))));
+        return adjacent;
+    }
+
 
     @Override
     public String toString() {
